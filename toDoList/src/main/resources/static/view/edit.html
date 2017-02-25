@@ -1,0 +1,37 @@
+<div class="jumbotron">
+	<h2>Editar Tarefa</h2>
+
+	<div>
+        <label for="task">Titulo da Tarefa:</label>
+        <input type="text" id="title" placeholder="Titulo da Tarefa" ng-model="task.taskTitle"/></br>
+    </div>
+	
+	<div>
+        <p for="taskDescription">Descrição da Tarefa:</p>
+        <textarea rows="10" cols="40" maxlength="500" placeholder="Descrição da Tarefa" ng-model="task.taskDescription"></textarea>
+    </div></br>
+    
+    <div>
+	    <label>Prioridade
+			<select class="btn btn-xs" id="sel1" ng-model="task.priority" ng-change="priority(task)">
+				<option value="LOW">Baixa</option>
+				<option value="MEDIUM">Média</option>
+				<option value="HIGH">Alta</option>
+			</select>
+		</label>
+	
+        <label>Categoria
+			<select class="btn btn-xs" id="sel2" ng-model="task.category" ng-change="category(task)">
+				<option value="NONE">-</option>
+				<option value="ESTUDO">Estudo</option>
+				<option value="TRABALHO">Trabalho</option>
+				<option value="VIDA_PESSOAL">Vida Pessoal</option>
+			</select>
+		</label>
+    </div></br>
+    
+    <div>
+    	<button class="btn btn-primary glyphicon glyphicon-floppy-disk" ng-click="edit(task)"> Salvar</button>
+    </div>
+
+</div>

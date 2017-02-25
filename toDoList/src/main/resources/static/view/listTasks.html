@@ -1,0 +1,111 @@
+<div ng-controller="toDoListCtrl">
+	<div id="taskList" class="jumbotron">
+	
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				
+				<ul class="nav navbar-nav">
+					<li class="active "><a href="#"><b>{{list.listName}}</b></a></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Listas
+							<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li ng-repeat="list in lists" ng-click="changeList(list)"><a href="">{{list.listName}}</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="">Filtrar Tarefas
+						<span class="glyphicon glyphicon-filter"></span></a>
+						<ul class="dropdown-menu" ng-click="filter()">
+							<li class="dropdown-header">Filtrar por Categoria</li>
+								<li><a href="#"  ng-click="filterTasks('NONE')">-</a></li>
+								<li><a href="#"  ng-click="filterTasks('ESTUDO')">Estudo</a></li>
+								<li><a href="#"  ng-click="filterTasks('TRABALHO')">Trabalho</a></li>
+								<li><a href="#"  ng-click="filterTasks('VIDA_PESSOAL')">Vida Pessoal</a></li>
+								<li class="divider"></li>
+							<li class="dropdown-header">Filtrar por Prioridade</li>
+								<li><a href="#"  ng-click="filterTasks('LOW')">Baixa</a></li>
+								<li><a href="#"  ng-click="filterTasks('MEDIUM')">Média</a></li>
+								<li><a href="#"  ng-click="filterTasks('HIGH')">Alta</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#"><span class="glyphicon glyphicon-ok"></span> Total de Tarefas Concluidas: {{contDone}}</a></li>
+					<li><button class="btn btn-danger navbar-btn" ng-click="eraseAllTasksList()"><span class="glyphicon glyphicon-trash"></span> Apagar Todas as Listas</button></li>
+				</ul>
+			</div>
+		</nav>
+		
+		<header>
+
+			<div class="progress">
+				<div class="progress-bar progress-bar-success" style="width:{{done}}%">
+					Tarefas Feitas - {{done | number:1}}%
+				</div>
+				<div class="progress-bar progress-bar-danger" style="width:{{notDone}}%">
+					Tarefas a Fazer - {{notDone| number:1}}%
+				</div>
+			</div>
+		</header>
+
+		<div class="alert alert-success" id="noTasks">
+			<span>
+				<p>Você ainda não adicionou nenhuma lista</p>
+				<p>Click em Nova Lista para adicionar uma nova lista</p>
+			</span>
+		</div>
+
+		<table class="table tablesorter" id="myTable">
+			<thead>
+				<tr id="tableTitle">
+					<th style="text-align:center">Feita</th>
+					<th style="text-align:center">Tarefa</th>
+					<th style="text-align:center" ng-model="task.priority">Prioridade</th>
+					<th style="text-align:center">Categoria</th>
+					<th style="text-align:center">Editar</th>
+					<th style="text-align:center">Excluir</th>
+				</tr>
+			</thead>
+			<boby>
+				<tr id="taskList" ng-class="{selected: task.taskDone}" ng-repeat="task in tasks">
+					<td><input type="checkbox" ng-model="task.taskDone" ng-click="addChecked(task)" ng-checked="{{task.taskDone}}"/></td>
+					<td class="task">{{task.taskTitle}}<br/>{{task.taskDescription}}</td>
+					<td>Prioridade
+						<select class="btn btn-xs" id="sel1" ng-model="task.priority" ng-change="priority(task)">
+							<option value="LOW">Baixa</option>
+							<option value="MEDIUM">Média</option>
+							<option value="HIGH">Alta</option>
+						</select>
+					</td>
+					<td>Categoria
+						<select class="btn btn-xs" id="sel2" ng-model="task.category" ng-change="category(task)">
+							<option value="NONE">-</option>
+							<option value="ESTUDO">Estudo</option>
+							<option value="TRABALHO">Trabalho</option>
+							<option value="VIDA_PESSOAL">Vida Pessoal</option>
+						</select>
+					</td>
+					<td><a class="btn btn-primary btn-xs glyphicon glyphicon-pencil" href="/edit/{{task.id}}.html" ng-click=""></a></td>
+					<td><button class="btn btn-danger btn-xs glyphicon glyphicon-trash" ng-click="eraseTask($index, task)"></button></td>
+				</tr>
+			</boby>
+		</table>
+
+		<hr/>
+		
+		<input class="form-control" id="task" type="text" ng-model="task.taskTitle" ng-keyup="$event.keyCode == 13 ? addTask() : null" placeholder="Tarefa"/>
+		<button class="btn btn-primary btn-block" ng-click="addTask()" ng-disabled="!task.taskTitle">Nova Tarefa</button>
+		<button class="btn btn-danger btn-block" ng-click="eraseTasks()">Apagar Lista</button>
+		<button id="download" class="btn btn-primary btn-block">Baixar Lista</button>
+	
+	</div>
+	
+	<div class="alert alert-success" id="filteredTasks">
+		<span>
+			<p>Total de tarefas filtradas: {{tasks.length}}</p>
+			<p>Tarefas feitas: {{contDone}}</p>
+			<p>Tarefas não realizadas: {{tasks.length-contDone}}</p>
+		</span>
+	</div>
+</div>

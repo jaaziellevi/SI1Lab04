@@ -1,0 +1,6 @@
+<div class="jumbotron">
+	<h3>Nova Lista de Tarefas</h3>
+	<br/>
+	<input class="form-control" id="list" type="text" ng-model="list.listName" ng-keyup="$event.keyCode == 13 ? addList() : null" placeholder="Noma da Nova Lista"/>
+	<button class="btn btn-primary btn-block" ng-click="addList()" ng-disabled="!list.listName">Nova Lista</button>
+</div>

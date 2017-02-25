@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina');
+@import url('https://fonts.googleapis.com/css?family=Jura');
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One');
+
+.jumbotron {
+	width: 85%;
+	height: 96%;
+	margin: 2% auto 2% auto;
+	text-align: center;
+}
+
+progress {
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+th {
+	font-family: 'Julius Sans One', sans-serif;
+	font-weight: bold;
+}
+
+.title {
+	font-family: 'Baloo Bhaina', cursive;
+	font-weight: bold;
+	text-align:center;
+}
+
+.task {
+	font-family: 'Jura', sans-serif;
+	text-align: center;
+}
+
+.table {
+	margin-top: 20px;
+}
+
+#taskList:hover {
+	background-color: #CCC;
+}
+
+#tableTitle {
+	background-color: #DDD;
+}
+
+.form-control {
+	margin-bottom: 5px;
+}
+
+.selected {
+	text-decoration: line-through;
+	font-style: italic;
+}
